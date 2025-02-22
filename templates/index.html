@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Clustering</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Color Clustering Tool</h1>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <label for="k">Number of Colors (k):</label>
+            <input type="number" name="k" value="5" min="2" max="10">
+            <button type="submit">Process Image</button>
+        </form>
+
+        <div id="loading" class="loading hidden">Processing...</div>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <div id="results" class="results hidden">
+            <h2>Results</h2>
+            <div class="image-container">
+                <div class="image-box">
+                    <h3>Original Image</h3>
+                    {% if original_path %}
+                        <img src="{{ url_for('static', filename=original_path) }}" alt="Original Image" class="result-img">
+                    {% endif %}
+                </div>
+                <div class="image-box">
+                    <h3>Clustered Image</h3>
+                    {% if clustered_path %}
+                        <img src="{{ url_for('static', filename=clustered_path) }}" alt="Clustered Image" class="result-img">
+                    {% endif %}
+                </div>
+            </div>
+            {% if colors %}
+                <h3>Dominant Colors (RGB)</h3>
+                <ul class="color-list">
+                    {% for color in colors %}
+                        <li style="background-color: rgb({{ color[0] }}, {{ color[1] }}, {{ color[2] }});">
+                            [{{ color[0] }}, {{ color[1] }}, {{ color[2] }}]
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
