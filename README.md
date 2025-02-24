@@ -9,7 +9,7 @@ Here's a beautifully designed `README.md` file for your **Color Clustering Websi
 
 ---
 
-## ✨ Overview
+## ✨ Overview main
 
 Welcome to the **Color Clustering Website**! This is a sleek, user-friendly web application built with Flask that lets you upload an image, extract its dominant colors using K-means clustering, and visualize the results with a stunning interface. Whether you're a designer, artist, or just curious, this tool makes color analysis fun and fast! 🚀
 
